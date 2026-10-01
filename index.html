@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Hat BD</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;text-align:center;padding:28px 15px}
+main{max-width:1000px;margin:auto;padding:18px}
+.hero,.info,.card{background:white;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 4px 15px #0001}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{margin:0}.icon{font-size:38px}.desc{color:#64748b;line-height:1.5;min-height:55px}
+.price{font-size:23px;font-weight:bold;margin:14px 0}
+button{border:0;border-radius:9px;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer}
+.buy{background:#111827;color:white;width:100%}.wa{background:#16a34a;color:white;width:100%}
+.payment{display:flex;gap:12px}.pay{background:#f8fafc;padding:14px;border-radius:10px;flex:1}
+.modal{display:none;position:fixed;inset:0;background:#0008;padding:18px;z-index:5}
+.box{background:white;max-width:500px;margin:25px auto;padding:22px;border-radius:16px}
+.close{float:right;background:#e5e7eb}input,select{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #ccd;border-radius:8px;box-sizing:border-box}
+.confirm{background:#111827;color:white;width:100%}.note{background:#fff7ed;padding:12px;margin-top:12px}
+@media(max-width:600px){.payment{display:block}.pay{margin:8px 0}}
+</style>
+</head>
+<body>
+<header><h1>📦 Digital Hat BD</h1><p>PDF • eBook • Excel • Course • Template</p></header>
+<main>
+<section class="hero"><h2>ডিজিটাল পণ্য কিনুন সহজে</h2><p>প্রয়োজনীয় ডিজিটাল গাইড, Excel ও Template এক জায়গায়।</p></section>
+<section class="products">
+<div class="card"><div class="icon">🗺️</div><h3>জমি মাপার Complete Guide</h3><div class="desc">শতক, কাঠা, বিঘা ও বর্গফুটের হিসাব এবং জমি মাপার প্রাথমিক গাইড।</div><div class="price">৳299</div><button class="buy" onclick="order('জমি মাপার Complete Guide','299')">অর্ডার করুন</button></div>
+<div class="card"><div class="icon">📊</div><h3>Land Calculator Excel</h3><div class="desc">জমির বিভিন্ন ইউনিট দ্রুত হিসাব করার Excel Template।</div><div class="price">৳199</div><button class="buy" onclick="order('Land Calculator Excel','199')">অর্ডার করুন</button></div>
+<div class="card"><div class="icon">📚</div><h3>Digital Survey Basic PDF</h3><div class="desc">ডিজিটাল সার্ভে শেখার সহজ বাংলা গাইড।</div><div class="price">৳249</div><button class="buy" onclick="order('Digital Survey Basic PDF','249')">অর্ডার করুন</button></div>
+<div class="card"><div class="icon">💼</div><h3>Business হিসাব Template</h3><div class="desc">ছোট ব্যবসার বিক্রি, খরচ ও লাভের হিসাব রাখার Template।</div><div class="price">৳149</div><button class="buy" onclick="order('Business হিসাব Template','149')">অর্ডার করুন</button></div>
+</section>
+<section class="info"><h3>💳 Payment</h3><div class="payment"><div class="pay"><b>bKash</b><br>01764972228</div><div class="pay"><b>Nagad</b><br>01764972228</div></div><div class="note">Payment করার পর Transaction ID সহ অর্ডার করুন। Payment যাচাইয়ের পর পণ্যের ফাইল দেওয়া হবে।</div></section>
+<section class="info"><h3>📱 WhatsApp</h3><button class="wa" onclick="general()">WhatsApp-এ অর্ডার করুন</button></section>
+</main>
+<footer style="text-align:center;padding:25px;color:#64748b">© 2026 Digital Hat BD</footer>
+
+<div class="modal" id="m"><div class="box"><button class="close" onclick="closeM()">✕</button><h2>অর্ডার করুন</h2>
+<p>পণ্য: <b id="pn"></b><br>মূল্য: <b>৳<span id="pp"></span></b></p>
+<label>আপনার নাম<input id="name" placeholder="নাম লিখুন"></label>
+<label>মোবাইল নম্বর<input id="phone" placeholder="01XXXXXXXXX"></label>
+<label>Payment Method<select id="method"><option>bKash</option><option>Nagad</option></select></label>
+<label>Transaction ID<input id="trx" placeholder="Transaction ID লিখুন"></label>
+<button class="confirm" onclick="send()">WhatsApp-এ অর্ডার পাঠান</button>
+<div class="note">bKash/Nagad: <b>01764972228</b></div></div></div>
+
+<script>
+let product='',price='';
+function order(a,b){product=a;price=b;pn.textContent=a;pp.textContent=b;m.style.display='block'}
+function closeM(){m.style.display='none'}
+function send(){let n=name.value.trim(),p=phone.value.trim(),t=trx.value.trim();if(!n||!p||!t){alert('নাম, মোবাইল নম্বর ও Transaction ID দিন।');return}let msg=`নতুন অর্ডার%0Aপণ্য: ${product}%0Aমূল্য: ৳${price}%0Aনাম: ${n}%0Aমোবাইল: ${p}%0APayment: ${method.value}%0ATransaction ID: ${t}`;window.open('https://wa.me/8801764972228?text='+msg,'_blank')}
+function general(){window.open('https://wa.me/8801764972228?text='+encodeURIComponent('আসসালামু আলাইকুম, আমি Digital Hat BD থেকে একটি ডিজিটাল পণ্য কিনতে চাই।'),'_blank')}
+</script>
+</body>
+</html>
